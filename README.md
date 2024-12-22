@@ -12,7 +12,7 @@ This is a feature-rich event management application that allows users to add, ed
 - **Download Events**: Export all events in CSV format with a single click from the top-right corner.
 
 ## Deployed Link
-[Access the Event Management Application Here](#)
+[Access the Event Management Application Here](https://event-management-4lxr.onrender.com/)
 
 ## Running the Application Locally
 
