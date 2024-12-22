@@ -7,8 +7,8 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"; // Assuming you have an Input component from ShadCN
-import { Label } from "@/components/ui/label"; // Assuming you have a Label component from ShadCN
+import { Input } from "@/components/ui/input"; 
+import { Label } from "@/components/ui/label"; 
 import { Textarea } from "@/components/ui/textarea";
 import { useCalendar } from "@/context/DayProvider";
 

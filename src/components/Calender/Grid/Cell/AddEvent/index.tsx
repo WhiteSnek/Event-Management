@@ -7,8 +7,8 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"; // Assuming you have an Input component from ShadCN
-import { Label } from "@/components/ui/label"; // Assuming you have a Label component from ShadCN
+import { Input } from "@/components/ui/input"; 
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useCalendar } from "@/context/DayProvider";
 
@@ -25,7 +25,6 @@ const AddEvent: React.FC<AddEventProps> = ({ day, setIsDialogOpen }) => {
   const [error, setError] = useState("");
   const { currentMonthIndex } = useCalendar();
   const handleAddEvent = () => {
-    // Validate the form fields
     if (!eventName || !startTime || !endTime) {
       setError("Event name and time are required.");
       return;
@@ -118,7 +117,6 @@ const AddEvent: React.FC<AddEventProps> = ({ day, setIsDialogOpen }) => {
         <DialogDescription>Please fill in the event details.</DialogDescription>
       </DialogHeader>
       <div className="grid grid-cols-1 gap-4">
-        {/* Event Name */}
         <div className="flex flex-col gap-2">
           <Label htmlFor="eventName" className="text-sm">
             Event Name <span className="text-red-500">*</span>
@@ -133,7 +131,6 @@ const AddEvent: React.FC<AddEventProps> = ({ day, setIsDialogOpen }) => {
           />
         </div>
 
-        {/* Event Description */}
         <div className="flex flex-col gap-2">
           <Label htmlFor="eventDescription" className="text-sm">
             Event Description (Optional)
@@ -147,7 +144,6 @@ const AddEvent: React.FC<AddEventProps> = ({ day, setIsDialogOpen }) => {
           />
         </div>
 
-        {/* Event Time */}
         <div className="flex gap-2">
           <div>
             <Label htmlFor="startTime" className="text-sm">
@@ -176,7 +172,6 @@ const AddEvent: React.FC<AddEventProps> = ({ day, setIsDialogOpen }) => {
           </div>
         </div>
 
-        {/* Error message */}
         {error && <p className="text-red-500">{error}</p>}
 
         <div className="flex justify-end gap-2 mt-4">

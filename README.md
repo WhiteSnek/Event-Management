@@ -1,50 +1,83 @@
-# React + TypeScript + Vite
+# Event Management Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This is a feature-rich event management application that allows users to add, edit, and delete events for any day. The application ensures that events on the same day do not overlap. Users can download all events in CSV format for easy data sharing and management.
 
-Currently, two official plugins are available:
+### Features:
+- **Add Events**: Add events to any day by specifying the event name, description, start time, and end time.
+- **Edit Events**: Modify the details of existing events.
+- **Delete Events**: Remove unwanted events from any day.
+- **Multiple Events per Day**: Add multiple events to a single day, ensuring no overlap in timings.
+- **Event Marking**: Days with events are visually marked.
+- **Download Events**: Export all events in CSV format with a single click from the top-right corner.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Deployed Link
+[Access the Event Management Application Here](#)
 
-## Expanding the ESLint configuration
+## Running the Application Locally
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Prerequisites
+- [Node.js](https://nodejs.org/) installed on your system.
+- [Docker](https://www.docker.com/) installed for containerized deployment.
 
-- Configure the top-level `parserOptions` property like this:
+### Steps to Run Locally Using NPM
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/event-management.git
+   cd event-management
+   ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Start the Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Access the Application**:
+   Open your browser and navigate to `http://localhost:5173`.
+
+### Steps to Run Locally Using Docker
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/event-management.git
+   cd event-management
+   ```
+
+2. **Build the Docker Image**:
+   ```bash
+   docker build -t event-management .
+   ```
+
+3. **Run the Docker Container**:
+   ```bash
+   docker run -p 5173:5173 event-management
+   ```
+
+4. **Access the Application**:
+   Open your browser and navigate to `http://localhost:5173`.
+
+## Project Structure
+```
+.
+├── public          # Static assets
+├── src             # Source code
+│   ├── components  # Reusable components
+│       ├── ui      # For ShadCn ui components
+│   ├── context     # Context providers
+├── package.json    # NPM dependencies
+├── Dockerfile      # Docker configuration
+└── README.md       # Project documentation
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage
+1. Navigate to any day on the calendar.
+2. Click on the day to add a new event.
+3. Provide the event details (name, description, start time, and end time).
+4. Edit or delete events as needed.
+5. Download all events in CSV format using the "Download Data" button in the top-right corner.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```

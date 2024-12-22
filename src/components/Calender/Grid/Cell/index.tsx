@@ -36,18 +36,21 @@ const CalenderCell: React.FC<CalenderCellProps> = ({
   };
 
   useEffect(() => {
-
+    // Format the current day into "YYYY-MM-DD" format to match the stored event keys
     const formattedDay = `2024-${
       currentMonthIndex + 1 > 9
         ? currentMonthIndex + 1
         : "0" + (currentMonthIndex + 1)
     }-${String(day).padStart(2, "0")}`;
+  
+    // Check if the formatted day matches today's date to set the "today" state
     if (formattedDay === getCurrentDate()) {
       setToday(true);
     } else {
       setToday(false);
     }
-
+  
+    // Retrieve events from localStorage and filter for the current day
     const storedEvents = localStorage.getItem("events");
     if (storedEvents) {
       const eventsObj = JSON.parse(storedEvents);
@@ -55,35 +58,38 @@ const CalenderCell: React.FC<CalenderCellProps> = ({
       setEvents(eventsForDay);
     }
   }, [day, currentMonthIndex]);
-
+  
   const handleDeleteEvent = (eventToDelete: any) => {
-
+    // Format the current day into "YYYY-MM-DD" format to match the stored event keys
     const formattedDay = `2024-${
       currentMonthIndex + 1 > 9
         ? currentMonthIndex + 1
         : "0" + (currentMonthIndex + 1)
     }-${String(day).padStart(2, "0")}`;
-
+  
     const storedEvents = localStorage.getItem("events");
     if (storedEvents) {
       const eventsObj = JSON.parse(storedEvents);
       const eventsForDay = eventsObj[formattedDay] || [];
-
+  
+      // Filter out the event to be deleted by comparing its start time
       const updatedEvents = eventsForDay.filter(
         (event: any) => event.startTime !== eventToDelete.startTime
       );
-
+  
+      // If there are no events left for the day, remove the day from the events object
       if (updatedEvents.length > 0) {
         eventsObj[formattedDay] = updatedEvents;
       } else {
-        delete eventsObj[formattedDay]; 
+        delete eventsObj[formattedDay];
       }
-
+  
+      // Update the localStorage and state with the new events list
       localStorage.setItem("events", JSON.stringify(eventsObj));
-
       setEvents(updatedEvents);
     }
   };
+  
 
   return (
     <>
