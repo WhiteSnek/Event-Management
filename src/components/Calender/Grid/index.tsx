@@ -11,7 +11,7 @@ const CalenderGrid: React.FC = () => {
   const daysArray = Array.from({ length: days }, (_, i) => i + 1);
 
   const leadingEmptyDays = Array.from({ length: startDay }, () => null);
-  const [selectedDay, setSelectedDay] = useState<number | string>(0)
+  const [selectedDay, setSelectedDay] = useState<string>('0-0')
   const allDays = [...leadingEmptyDays, ...daysArray];
 
   return (

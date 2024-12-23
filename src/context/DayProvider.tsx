@@ -19,8 +19,13 @@ const DayProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     'November', 'December',
   ];
 
+  const isLeapYear = ():boolean => {
+    const currentYear = new Date().getFullYear();
+    return (currentYear % 4 === 0 && currentYear % 100 !== 0) || (currentYear % 400 === 0);
+};
+
   const daysInMonth = [
-    31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
+    31, isLeapYear() ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
   ];
 
   const [currentMonthIndex, setCurrentMonthIndex] = useState<number>(0);
@@ -33,8 +38,9 @@ const DayProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   // Function to calculate the starting day of the month
   const getStartDay = (): number => {
-    // Assume the year starts on Sunday (0) for simplicity
-    const startDay = 0; // Sunday
+    const currentYear = new Date().getFullYear(); // Get the current year
+    const januaryFirst = new Date(currentYear, 0, 1);
+    const startDay = januaryFirst.getDay();
     const totalDaysBefore = daysInMonth.slice(0, currentMonthIndex).reduce((acc, days) => acc + days, 0);
     return (startDay + totalDaysBefore) % 7; // Return the starting day of the week (0-6)
   };

@@ -12,8 +12,8 @@ import { useCalendar } from "@/context/DayProvider";
 
 interface CalenderCellProps {
   day: number | string;
-  selectedDay: number | string;
-  setSelectedDay: React.Dispatch<React.SetStateAction<number | string>>;
+  selectedDay: string;
+  setSelectedDay: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CalenderCell: React.FC<CalenderCellProps> = ({
@@ -97,15 +97,15 @@ const CalenderCell: React.FC<CalenderCellProps> = ({
         <PopoverTrigger>
           <div
             className={`relative flex items-center justify-center border border-gray-700 ${
-              today || selectedDay === day
+              today || selectedDay === `${currentMonthIndex}-${day}`
                 ? "bg-zinc-800 text-zinc-300"
                 : "bg-zinc-300 text-zinc-800"
             }  rounded-md h-10 sm:h-20 cursor-pointer text-sm sm:text-lg`}
-            onClick={() => setSelectedDay(day)}
+            onClick={() => setSelectedDay(`${currentMonthIndex}-${day}`)}
             onMouseDown={(e) => e.preventDefault()}
             onBlur={(e) => {
               if (!e.currentTarget.contains(e.relatedTarget)) {
-                setSelectedDay(0);
+                setSelectedDay('');
               }
             }}
             tabIndex={0}
